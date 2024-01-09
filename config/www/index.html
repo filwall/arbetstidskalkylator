@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arbetstidskalkylator</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f0f0f0;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    #calculator {
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      text-align: center;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    input {
+      width: 60px;
+      padding: 8px;
+      margin-bottom: 16px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    button {
+      background-color: #4caf50;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    #result {
+      margin-top: 20px;
+      font-weight: bold;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+
+<div id="calculator">
+
+  <h1>Arbetstidskalkylator</h1>
+
+  <form id="workForm">
+    <label for="startHour">Starttimme:</label>
+    <input type="number" id="startHour" required>
+    <br>
+
+    <label for="startMinute">Startminut:</label>
+    <input type="number" id="startMinute" required>
+    <br>
+
+    <label for="endHour">Sluttimme:</label>
+    <input type="number" id="endHour" required>
+    <br>
+
+    <label for="endMinute">Slutminut:</label>
+    <input type="number" id="endMinute" required>
+    <br>
+
+    <button type="button" onclick="calculateWorkHours()">Beräkna</button>
+  </form>
+
+  <p id="result"></p>
+
+</div>
+
+<script>
+  function calculateWorkHours() {
+    var startHour = parseInt(document.getElementById('startHour').value);
+    var startMinute = parseInt(document.getElementById('startMinute').value);
+    var endHour = parseInt(document.getElementById('endHour').value);
+    var endMinute = parseInt(document.getElementById('endMinute').value);
+
+    var timeDifferenceMinutes = (endHour - startHour) * 60 + (endMinute - startMinute) - 30;
+
+    var hours = Math.floor(timeDifferenceMinutes / 60);
+    var minutes = timeDifferenceMinutes % 60;
+
+    document.getElementById('result').innerHTML = 'Du arbetar: ' + hours + ' timmar och ' + minutes + ' minuter.' + ' Exclusive Rast';
+  }
+</script>
+
+</body>
+</html>
